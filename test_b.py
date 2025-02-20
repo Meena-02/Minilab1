@@ -1,5 +1,5 @@
 """ 
-Test C:
+Test B:
 Model Configuration Changes
     ~ All layers frozen
     ~ Fully Connected layer changed to match CIFAR-10
