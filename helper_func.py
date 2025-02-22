@@ -12,7 +12,7 @@ import numpy as np
 CIFAR_CLASS = ['airplane', 'automobile', 'bird', 'cat', 'deer',
             'dog', 'frog', 'horse', 'ship', 'truck']
    
-def load_dataset():
+def load_dataset(batch_size = 32):
     # Define transformation for normalization and resizing
     transform = transforms.Compose([
         transforms.Resize((224, 224)), # resizes to 224x224 px
@@ -41,9 +41,9 @@ def load_dataset():
     train_dataset, val_dataset = random_split(full_train_dataset, [train_size, val_size])
     
     # Create DataLoaders for train, val and test
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=True)
-    test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
        
     return train_dataset, train_loader, val_dataset, val_loader, test_dataset, test_loader
 
