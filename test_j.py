@@ -20,7 +20,7 @@ import helper_func as hf
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 num_epochs = 5
-batch_size = 16
+batch_size = 64
 
 model = models.resnet50(pretrained=True)
 
@@ -52,9 +52,9 @@ for epoch in range(num_epochs):
     print(f"Epoch [{epoch+1}/{num_epochs}], batch_size: {batch_size}, train loss: {train_loss:.4f}, train acc: {train_acc:.4f}, val loss: {val_loss:.4f}, val acc: {val_acc:.4f}")
     print(f'Current learning rate: {step_lr_scheduler.get_last_lr()[0]:.10f}')
     
-torch.save(model.state_dict(), f'models/resnet50_cifar10_test_J_16.pth')
+torch.save(model.state_dict(), f'models/resnet50_cifar10_test_J_64.pth')
 print(f"Finished training the model. Model has been saved")
 
-test_loss, test_acc = hf.test(model, testloader, len(testset), loss_function, "test_J_16" ,device)
+test_loss, test_acc = hf.test(model, testloader, len(testset), loss_function, "test_J_64" ,device)
 print(f'Test loss: {test_loss:.2f}, Test Accuracy: {test_acc:.2f}')
 
