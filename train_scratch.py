@@ -7,7 +7,7 @@ import torchvision.models as models
 from torch.utils.data import DataLoader, random_split
 
 # Check for GPU
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda")
 
 # Define Data Augmentation & Normalization
 train_transform = transforms.Compose([
@@ -34,7 +34,7 @@ val_size = len(train_dataset) - train_size
 train_dataset, val_dataset = random_split(train_dataset, [train_size, val_size])
 
 # DataLoaders
-batch_size = 64  # Adjust as needed
+batch_size = 32  # Adjust as needed
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
@@ -51,13 +51,13 @@ model.to(device)
 
 # Define Loss Function & Optimizer
 loss_function = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=5e-4)
+optimizer = optim.Adam(model.parameters(), lr=0.01, momentum=0.9, weight_decay=5e-4)
 
 # Learning Rate Scheduler (Optional)
 scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=15, gamma=0.1)  # Reduce LR every 15 epochs
 
 # Training Loop
-num_epochs = 50  # Increase for better accuracy
+num_epochs = 5  # Increase for better accuracy
 
 for epoch in range(num_epochs):
     model.train()
