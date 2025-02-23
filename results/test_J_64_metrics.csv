@@ -3,3 +3,4 @@ Accuracy,0.9132
 Precision,0.9134091598340393
 Recall,0.9132
 F1-Score,0.9131485697743154
+Test loss, 0.26
